@@ -78,11 +78,16 @@
 			viewer.scene.addPointCloud(e.pointcloud);
 
 			let material = e.pointcloud.material;
-			material.size = 1;
+			material.size = 2;
 			material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+			material.pointColorType = Potree.PointColorType.CLASSIFICATION;
 			if (c) material.activeAttributeName = c;
 
-			viewer.fitToScreen(0.5);
+			let box = e.pointcloud.boundingBox;
+			let center = box.getCenter(new THREE.Vector3());
+			let radius = box.getBoundingSphere(new THREE.Sphere()).radius;
+			viewer.scene.view.position.set(center.x, center.y - radius * 2, center.z + radius);
+			viewer.scene.view.lookAt(center);
 		});
 	</script>
   </body>
