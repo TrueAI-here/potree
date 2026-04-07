@@ -60,7 +60,8 @@ let pc = e.pointcloud;
 let mat = pc.material;
 mat.size = 2;
 mat.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-mat.pointColorType = Potree.PointColorType.CLASSIFICATION;
+// mat.pointColorType = Potree.PointColorType.CLASSIFICATION;
+mat.pointColorType = 2;
 
 viewer.scene.addPointCloud(pc);
 allPointClouds.push(pc);
